@@ -2,8 +2,8 @@ import mongoose from 'mongoose'
 const {Schema, model} = mongoose
 
 export const urlsSchema = new Schema({
-    main_url: {type: String, required: true},
-    increment: {type: String, required: true, unique: true},    
+    original_url: {type: String, required: true, unique: true},     
+    short_url: {type: Number, required: true, unique: true},
 })
 
 
