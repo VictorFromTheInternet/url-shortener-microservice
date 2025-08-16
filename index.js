@@ -1,10 +1,14 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+import 'dotenv/config'
+import express from 'express'
+import cors from 'cors'
 const app = express();
+
+import connectDb from './config/connectDb.js'
+import shortUrlRouter from './routers/shorturl_router.js'
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
+connectDb()
 
 app.use(cors());
 
@@ -18,7 +22,10 @@ app.get('/', function(req, res) {
 app.get('/api/hello', function(req, res) {
   res.json({ greeting: 'hello API' });
 });
+app.use('/api', shortUrlRouter)
+
 
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);
+  console.log(`http://localhost:${port}`);
 });
